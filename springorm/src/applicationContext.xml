@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xmlns:context="http://www.springframework.org/schema/context"
+   xsi:schemaLocation="
+      http://www.springframework.org/schema/beans 
+      http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+      http://www.springframework.org/schema/context 
+      http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+<beans>
+
+	<bean id="dataSource" class="com.jolbox.bonecp.BoneCPDataSource" destroy-method="close">
+		<property name="driverClass" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy" />
+		<property name="jdbcUrl" value="jdbc:postgresql://127.0.0.1:5433/demodatabase" />
+		<property name="username" value="demo" />
+		<property name="password" value="demo" />
+		<property name="idleConnectionTestPeriodInMinutes" value="60" />
+		<property name="idleMaxAgeInMinutes" value="240" />  
+		<property name="maxConnectionsPerPartition" value="100" />
+		<property name="minConnectionsPerPartition" value="50" />
+		<property name="partitionCount" value="1" />
+		<property name="acquireIncrement" value="10" />
+		<property name="statementsCacheSize" value="100" />
+		<property name="releaseHelperThreads" value="3" />
+		<property name="logStatementsEnabled" value="true" />
+  
+	</bean>
+
+	<bean id="mysessionFactory"  class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">  
+        <property name="dataSource" ref="dataSource"></property>  
+          
+        <property name="mappingResources">  
+        <list>  
+        <value>employee.hbm.xml</value>  
+        </list>  
+        </property>  
+         
+        <property name="hibernateProperties">  
+            <props>  
+                <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>  
+                <prop key="hibernate.hbm2ddl.auto">update</prop>  
+                <prop key="hibernate.show_sql">true</prop>  
+                  
+            </props>  
+        </property>  
+    </bean>  
+      
+    <bean id="template" class="org.springframework.orm.hibernate4.HibernateTemplate">  
+    <property name="sessionFactory" ref="mysessionFactory"></property>  
+    </bean>  
+      
+      
+       <bean id="test" class="test.EmployeeDao">  
+    		<property name="template" ref="template"></property>  
+    </bean>  
+   
+  <!--  <bean id="docDao" class="com.dao.DocumentsDAO">
+		<property name="JdbcTemplate" ref="template"></property>  
+	</bean>
+   
+    <bean id="attrDao" class="com.dao.AttributesDAO">
+		<property name="JdbcTemplate" ref="template"></property>  
+	</bean>
+	
+	<bean id="mapDao" class="com.dao.MappingDAO">
+		<property name="JdbcTemplate" ref="template"></property>  
+	</bean> -->
+   
+
+</beans>

@@ -1,0 +1,72 @@
+.td{
+	float:left;
+	width:200px;
+}
+
+.divTable{
+	width:50%;
+}
+.checkboxCls{
+	width:20%;
+	float:left;
+}
+.colCls{
+	width:40%;
+	float:left;
+}
+.colClsHdr{
+	width:40%;
+	font-weight:bold;
+	float:left;
+}
+.row{
+	border:1px solid #ccc;
+    width: 100%;
+    height: 20px;
+    padding: 5px;
+    font-size: 1.2em;
+}
+.checkboxCls input{
+	cursor:pointer;
+}
+
+.btn{
+	border-radius:12px;
+	border:1px solid #ccc;
+	background:#ccc;
+	width:150px;
+	float:left;
+	margin-right:30px;
+	text-align:center;
+	cursor:pointer;
+	padding:4px 10px;
+	margin-bottom:20px;
+	
+}
+.docdropdownText{
+	 width: 40%;
+    float: left;
+    text-align: right;
+    margin-right: 100px;
+}
+.mapper{
+	margin-top:100px;
+	 width: 60%;
+    float: right;
+    text-align: center;
+    margin-right: 100px;
+    opacity:0;
+}
+.ms-selectable::before{
+	position: absolute;
+	content: 'All Attributes';
+	margin-top: -25px;
+	margin-left: -50px;
+}
+
+.ms-selection::before{
+	position: absolute;
+	content: 'Mapped Attributes';
+	margin-top: -25px;
+	margin-left: -50px;
+}

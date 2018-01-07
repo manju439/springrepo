@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jaxrs="http://cxf.apache.org/jaxrs" xmlns="http://www.springframework.org/schema/beans"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://cxf.apache.org/jaxrs 
+    http://cxf.apache.org/schemas/jaxrs.xsd">
+	
+	<import resource="classpath:META-INF/cxf/cxf.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
+	
+	<!-- Jackson Bean -->
+	<bean id="jsonProvider" class="org.codehaus.jackson.jaxrs.JacksonJsonProvider" />
+	
+	<jaxrs:server id="DemoService" address="/service">	
+		<jaxrs:serviceBeans>
+				<ref bean="test" />
+	 	    <!-- <ref bean="docBean" />
+			<ref bean="attributeBean" />
+			<ref bean="mapperBean" /> -->
+		</jaxrs:serviceBeans>
+		<jaxrs:providers>
+			<ref bean="jsonProvider" />
+		</jaxrs:providers>
+	</jaxrs:server> 
+	<bean id="test" class="test.TestController" />
+<!-- 	<bean id="docBean" class="com.controllers.DocsController" />
+	<bean id="attributeBean" class="com.controllers.AttributesController" />
+	<bean id="mapperBean" class="com.controllers.MapperController" /> -->
+ 
+</beans>
