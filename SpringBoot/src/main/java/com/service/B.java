@@ -5,7 +5,7 @@ package com.service;
  */
 
 public class B {
-    public B (){
+    public B() {
         System.out.println("==========Injecting B class bean by Spring IOC=========");
     }
 }

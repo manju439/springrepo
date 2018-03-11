@@ -1,23 +1,20 @@
-package com;
+package com.app;
 
 import com.config.Config;
 import com.config.Config1;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Import;
 
-@Configuration
-@EnableAutoConfiguration
-@Import({Config1.class,Config.class})
-public class App
-{
-    public static void main( String[] args )
-    {
+@SpringBootApplication
+@Import({Config1.class, Config.class})
+@ComponentScan("com.*")
+public class App {
+    public static void main(String[] args) {
 
+        SpringApplication.run(App.class, args);
 
-    	SpringApplication.run(App.class, args);
-    	
     }
 }
 
